@@ -1,16 +1,22 @@
 let users = [
-    {id: 1, name: "Jose Miranda", email: "jose@gmail.com"},
-    {id: 2, name: "Erika", email: "erika@gmail.com"}
+    {id: 1, name: "Jose", email: "j@gmail.com"},
+    {id: 2, name: "Eri", email: "e@gmail.com"}
 ];
 
 const getUsers = () => users;
 
-const getUserById = (id) => users.find(user => user.id ===id);
+const getUsersById = (id) => users.find(users => users.id === id);
 
 const addUsers = (name, email) => {
-    const newUser = { id: users.length + 1, name, email };
+    const newUser = {id: users.length, name, email};
     users.push(newUser);
     return newUser;
 };
 
-module.exports = { getUsers, getUserById, addUsers };
+const deleteUser = (id) => {
+    const initialLength = users.length;
+    users = users.filter(users => users.id !== id);
+    return users.length < initialLength;
+};
+
+module.exports = { getUsers, getUsersById, addUsers, deleteUser}
